@@ -7,11 +7,15 @@ Odds are constructed by calling the public from* constructors:
 ```js
 var oddslib = require('oddslib');
 
-// Create decimal/European odds
+// Create from decimal/European odds
 var odds = oddslib.fromDecimal(1.20);
 
-// Create American/Moneyline odds
+// Create from American/Moneyline odds
 var odds = oddslib.fromAmerican(-500);
+
+// Create from Hong Kong odds
+var odds = oddslib.fromHongKong(.20);
+
 ```
 
 Odds can then be converted using the to* instance methods:
@@ -21,6 +25,7 @@ var odds = oddslib.fromDecimal(1.20);
 
 odds.toDecimal();  // == 1.2
 odds.toAmerican(); // == -500
+odds.toHongKong(); // == 0.2
 ```
 
 # Todo
@@ -30,7 +35,7 @@ odds.toAmerican(); // == -500
 - [x] EU/decimal odds
 - [x] American odds
 - [ ] UK/fractional odds
-- [ ] Hong Kong odds
+- [x] Hong Kong odds
 - [ ] Malaysian odds
 - [ ] Indonesian odds
 - [ ] Implied probability

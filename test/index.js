@@ -29,4 +29,15 @@ describe('odds', function() {
     oddslib.fromDecimal(1.8).toAmerican().should.equal(-125);
     oddslib.fromDecimal(4.5).toAmerican().should.equal(350);
   });
+
+  // From/to Hong Kong
+  it('can be constructed from Hong Kong odds', function() {
+    oddslib.fromHongKong(0.2).should.be.an.instanceof(oddslib.Odds);
+    oddslib.fromHongKong(0.2).toDecimal().should.equal(1.20);
+  });
+
+  it('can be converted to HongKong odds', function() {
+    oddslib.fromDecimal(1.2).toHongKong().should.equal(0.20);
+    oddslib.fromDecimal(11.76).toHongKong().should.equal(10.76);
+  });
 });
