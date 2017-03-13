@@ -40,7 +40,7 @@ odds.toImpliedProbability(); // == 0.83̅
 - [x] American odds
 - [ ] UK/fractional odds
 - [x] Hong Kong odds
-- [ ] Malaysian odds
+- [ ] Malay odds
 - [ ] Indonesian odds
 - [x] Implied probability
 
