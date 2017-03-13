@@ -59,8 +59,9 @@ describe('odds', function() {
     oddslib.fromFractional(5, 2).toDecimal().should.equal(3.50);
   });
 
-  // it('can be converted to UK/fractional odds', function() {
-  //   oddslib.fromDecimal(3.50).toFractional().should.equal("25/10");
-  //   oddslib.fromDecimal(1).toFractional().should.equal("1/1");
-  // });
+  it('can be converted to UK/fractional odds', function() {
+    oddslib.fromDecimal(1.40).toFractional().should.equal("2/5");
+    oddslib.fromDecimal(3.50).toFractional().should.equal("5/2");
+    oddslib.fromDecimal(2).toFractional().should.equal("1/1");
+  });
 });

@@ -33,7 +33,7 @@ odds.toDecimal();            // == 1.2
 odds.toAmerican();           // == -500
 odds.toHongKong();           // == 0.2
 odds.toImpliedProbability(); // == 0.83̅
-odds.toFractional();         // == "2/10"
+odds.toFractional();         // == "1/5"
 ```
 
 # Todo

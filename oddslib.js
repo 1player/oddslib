@@ -1,3 +1,5 @@
+var n2f = require('num2fraction');
+
 // 1.2 - 1.0 === 0.19999999999999996
 // fixFloatError(1.2 - 1.0) === 0.2
 var fixFloatError = function(n) {
@@ -66,8 +68,9 @@ Odds.prototype.toImpliedProbability = function() {
   return fixFloatError(1 / this.decimalValue);
 };
 
-// Odds.prototype.toFractional = function() {
-// };
+Odds.prototype.toFractional = function() {
+  return n2f(fixFloatError(this.decimalValue - 1));
+};
 
 module.exports = {
   Odds: Odds,
