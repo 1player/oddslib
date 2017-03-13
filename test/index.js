@@ -52,4 +52,15 @@ describe('odds', function() {
     oddslib.fromDecimal(2.50).toImpliedProbability().should.equal(0.4);
     oddslib.fromDecimal(1).toImpliedProbability().should.equal(1);
   });
+
+  // From/to UK/fractional
+  it('can be constructed from UK/fractional odds', function() {
+    oddslib.fromFractional(5, 2).should.be.an.instanceof(oddslib.Odds);
+    oddslib.fromFractional(5, 2).toDecimal().should.equal(3.50);
+  });
+
+  // it('can be converted to UK/fractional odds', function() {
+  //   oddslib.fromDecimal(3.50).toFractional().should.equal("25/10");
+  //   oddslib.fromDecimal(1).toFractional().should.equal("1/1");
+  // });
 });

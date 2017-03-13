@@ -38,6 +38,10 @@ var Odds = (function() {
     return new Odds(1.0 / ip);
   };
 
+  PublicOdds.fromFractional = function(n, d) {
+    return new Odds(1 + (n / d));
+  };
+
   return PublicOdds;
 }());
 
@@ -62,6 +66,8 @@ Odds.prototype.toImpliedProbability = function() {
   return fixFloatError(1 / this.decimalValue);
 };
 
+// Odds.prototype.toFractional = function() {
+// };
 
 module.exports = {
   Odds: Odds,
@@ -70,4 +76,5 @@ module.exports = {
   fromAmerican: Odds.fromAmerican,
   fromHongKong: Odds.fromHongKong,
   fromImpliedProbability: Odds.fromImpliedProbability,
+  fromFractional: Odds.fromFractional,
 };

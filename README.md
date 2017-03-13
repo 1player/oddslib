@@ -19,6 +19,9 @@ var odds = oddslib.fromHongKong(.20);
 // Create from implied probability
 var odds = oddslib.fromImpliedProbability(.5);
 
+// Create from UK/fractional odds
+var odds = oddslib.fromFractional(5, 2);
+
 ```
 
 Odds can then be converted using the to* instance methods:
@@ -30,6 +33,7 @@ odds.toDecimal();            // == 1.2
 odds.toAmerican();           // == -500
 odds.toHongKong();           // == 0.2
 odds.toImpliedProbability(); // == 0.83̅
+odds.toFractional();         // == "2/10"
 ```
 
 # Todo
