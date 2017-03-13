@@ -22,12 +22,12 @@ var Odds = (function() {
     return new Odds(decimal);
   };
 
-  PublicOdds.fromAmerican = function(american) {
+  PublicOdds.fromMoneyline = function(moneyline) {
     var decimal;
-    if (american > 0) {
-      decimal = (american / 100.0) + 1;
+    if (moneyline > 0) {
+      decimal = (moneyline / 100.0) + 1;
     } else {
-      decimal = (100 / -american) + 1;
+      decimal = (100 / -moneyline) + 1;
     }
     return new Odds(decimal);
   };
@@ -53,7 +53,7 @@ Odds.prototype.toDecimal = function() {
   return this.decimalValue;
 };
 
-Odds.prototype.toAmerican = function() {
+Odds.prototype.toMoneyline = function() {
   if (this.decimalValue >= 2) {
     return fixFloatError((this.decimalValue - 1) * 100.0);
   }
@@ -76,7 +76,7 @@ module.exports = {
   Odds: Odds,
 
   fromDecimal: Odds.fromDecimal,
-  fromAmerican: Odds.fromAmerican,
+  fromMoneyline: Odds.fromMoneyline,
   fromHongKong: Odds.fromHongKong,
   fromImpliedProbability: Odds.fromImpliedProbability,
   fromFractional: Odds.fromFractional,

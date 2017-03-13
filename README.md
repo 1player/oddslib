@@ -11,7 +11,7 @@ var oddslib = require('oddslib');
 var odds = oddslib.fromDecimal(1.20);
 
 // Create from American/Moneyline odds
-var odds = oddslib.fromAmerican(-500);
+var odds = oddslib.fromMoneyline(-500);
 
 // Create from Hong Kong odds
 var odds = oddslib.fromHongKong(.20);
@@ -30,7 +30,7 @@ Odds can then be converted using the to* instance methods:
 var odds = oddslib.fromDecimal(1.20);
 
 odds.toDecimal();            // == 1.2
-odds.toAmerican();           // == -500
+odds.toMoneyline();           // == -500
 odds.toHongKong();           // == 0.2
 odds.toImpliedProbability(); // == 0.83̅
 odds.toFractional();         // == "1/5"

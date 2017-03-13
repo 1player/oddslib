@@ -18,16 +18,16 @@ describe('odds', function() {
     oddslib.fromDecimal(1.5).toDecimal().should.equal(1.5);
   });
 
-  // From/to American
-  it('can be constructed from American odds', function() {
-    oddslib.fromAmerican(-500).should.be.an.instanceof(oddslib.Odds);
-    oddslib.fromAmerican(-500).toDecimal().should.equal(1.20);
-    oddslib.fromAmerican(500).toDecimal().should.equal(6.00);
+  // From/to American/Moneyline
+  it('can be constructed from Moneyline odds', function() {
+    oddslib.fromMoneyline(-500).should.be.an.instanceof(oddslib.Odds);
+    oddslib.fromMoneyline(-500).toDecimal().should.equal(1.20);
+    oddslib.fromMoneyline(500).toDecimal().should.equal(6.00);
   });
 
-  it('can be converted to American odds', function() {
-    oddslib.fromDecimal(1.8).toAmerican().should.equal(-125);
-    oddslib.fromDecimal(4.5).toAmerican().should.equal(350);
+  it('can be converted to Moneyline odds', function() {
+    oddslib.fromDecimal(1.8).toMoneyline().should.equal(-125);
+    oddslib.fromDecimal(4.5).toMoneyline().should.equal(350);
   });
 
   // From/to Hong Kong
