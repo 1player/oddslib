@@ -42,7 +42,7 @@ odds.toFractional();         // == "1/5"
 
 - [x] EU/decimal odds
 - [x] American odds
-- [ ] UK/fractional odds
+- [x] UK/fractional odds
 - [x] Hong Kong odds
 - [ ] Malay odds
 - [ ] Indonesian odds
