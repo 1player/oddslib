@@ -1,0 +1,15 @@
+{
+  "name": "oddslib",
+  "version": "1.0.0",
+  "description": "Odds conversion and formatting library",
+  "main": "oddslib.js",
+  "scripts": {
+    "test": "node_modules/.bin/mocha --reporter spec"
+  },
+  "author": "Stéphane Travostino <steph@combo.cc>",
+  "license": "MIT",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0"
+  }
+}
