@@ -22,7 +22,7 @@ var Odds = (function() {
       decimal = (100 / -american) + 1;
     }
     return new Odds(decimal);
-  }
+  };
 
   // Conversion API
   PublicOdds.prototype.toDecimal = function() {
