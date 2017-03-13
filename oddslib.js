@@ -34,6 +34,10 @@ var Odds = (function() {
     return new Odds(hongKong + 1.0);
   };
 
+  PublicOdds.fromImpliedProbability = function(ip) {
+    return new Odds(1.0 / ip);
+  };
+
   return PublicOdds;
 }());
 
@@ -54,6 +58,10 @@ Odds.prototype.toHongKong = function() {
   return fixFloatError(this.decimalValue - 1);
 };
 
+Odds.prototype.toImpliedProbability = function() {
+  return fixFloatError(1 / this.decimalValue);
+};
+
 
 module.exports = {
   Odds: Odds,
@@ -61,4 +69,5 @@ module.exports = {
   fromDecimal: Odds.fromDecimal,
   fromAmerican: Odds.fromAmerican,
   fromHongKong: Odds.fromHongKong,
+  fromImpliedProbability: Odds.fromImpliedProbability,
 };

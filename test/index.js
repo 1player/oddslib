@@ -36,8 +36,20 @@ describe('odds', function() {
     oddslib.fromHongKong(0.2).toDecimal().should.equal(1.20);
   });
 
-  it('can be converted to HongKong odds', function() {
+  it('can be converted to Hong Kong odds', function() {
     oddslib.fromDecimal(1.2).toHongKong().should.equal(0.20);
     oddslib.fromDecimal(11.76).toHongKong().should.equal(10.76);
+  });
+
+  // From/to implied probability
+  it('can be constructed from implied probability', function() {
+    oddslib.fromImpliedProbability(0.5).should.be.an.instanceof(oddslib.Odds);
+    oddslib.fromImpliedProbability(0.5).toDecimal().should.equal(2.00);
+  });
+
+  it('can be converted to implied probability', function() {
+    oddslib.fromDecimal(1.60).toImpliedProbability().should.equal(0.625);
+    oddslib.fromDecimal(2.50).toImpliedProbability().should.equal(0.4);
+    oddslib.fromDecimal(1).toImpliedProbability().should.equal(1);
   });
 });
