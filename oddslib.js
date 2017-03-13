@@ -19,6 +19,7 @@ var Odds = (function() {
   PublicOdds.fromDecimal = function(decimal) {
     return new Odds(decimal);
   };
+
   PublicOdds.fromAmerican = function(american) {
     var decimal;
     if (american > 0) {
@@ -28,26 +29,31 @@ var Odds = (function() {
     }
     return new Odds(decimal);
   };
+
   PublicOdds.fromHongKong = function(hongKong) {
     return new Odds(hongKong + 1.0);
   };
 
-  // Conversion API
-  PublicOdds.prototype.toDecimal = function() {
-    return this.decimalValue;
-  };
-  PublicOdds.prototype.toAmerican = function() {
-    if (this.decimalValue >= 2) {
-      return fixFloatError((this.decimalValue - 1) * 100.0);
-    }
-    return fixFloatError(-100 / (this.decimalValue - 1));
-  };
-  PublicOdds.prototype.toHongKong = function() {
-    return fixFloatError(this.decimalValue - 1);
-  };
-
   return PublicOdds;
 }());
+
+
+// Conversion API
+Odds.prototype.toDecimal = function() {
+  return this.decimalValue;
+};
+
+Odds.prototype.toAmerican = function() {
+  if (this.decimalValue >= 2) {
+    return fixFloatError((this.decimalValue - 1) * 100.0);
+  }
+  return fixFloatError(-100 / (this.decimalValue - 1));
+};
+
+Odds.prototype.toHongKong = function() {
+  return fixFloatError(this.decimalValue - 1);
+};
+
 
 module.exports = {
   Odds: Odds,
