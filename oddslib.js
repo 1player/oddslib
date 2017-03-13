@@ -28,6 +28,12 @@ var Odds = (function() {
   PublicOdds.prototype.toDecimal = function() {
     return this.decimalValue;
   };
+  PublicOdds.prototype.toAmerican = function() {
+    if (this.decimalValue >= 2) {
+      return (this.decimalValue - 1) * 100.0;
+    }
+    return -100 / (this.decimalValue - 1);
+  };
 
   return PublicOdds;
 }());
