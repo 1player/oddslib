@@ -32,6 +32,18 @@ var odds = oddslib.fromIndonesian(-5.0);
 
 ```
 
+Or using the generic constructor:
+
+```js
+oddslib.from('decimal', 1.2);
+oddslib.from('moneyline, -500);
+oddslib.from('hongKong, .2);
+oddslib.from('impliedProbability', .5);
+oddslib.from('fractional', "5/2");
+oddslib.from('malay', 0.5);
+oddslib.from('indonesian', -5.0);
+```
+
 Odds can then be converted using the to* instance methods:
 
 ```js

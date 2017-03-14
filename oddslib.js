@@ -6,6 +6,16 @@ var fixFloatError = function(n) {
   return parseFloat(n.toPrecision(12));
 };
 
+var FORMATS = [
+  'decimal',
+  'moneyline',
+  'hongKong',
+  'impliedProbability',
+  'fractional',
+  'malay',
+  'indonesian',
+];
+
 var Odds = (function() {
   // Private constructor pattern
   // from http://stackoverflow.com/a/21731713
@@ -73,6 +83,16 @@ var Odds = (function() {
     return new Odds( (-1 / indonesian) + 1 );
   };
 
+  // Generic constructor
+  var constructorMap = {};
+  for (var format of FORMATS) {
+    constructorMap[format] = "from" + format[0].toUpperCase() + format.substr(1);
+  }
+
+  PublicOdds.from = function(format, value) {
+    return PublicOdds[constructorMap[format]](value);
+  };
+
   return PublicOdds;
 }());
 
@@ -118,6 +138,9 @@ Odds.prototype.toIndonesian = function() {
 module.exports = {
   Odds: Odds,
 
+  FORMATS: FORMATS,
+
+  from: Odds.from,
   fromDecimal: Odds.fromDecimal,
   fromMoneyline: Odds.fromMoneyline,
   fromHongKong: Odds.fromHongKong,

@@ -51,6 +51,28 @@ describe('odds construction', function() {
   });
 });
 
+describe('odds generic constructor', function() {
+  it('supports all formats', function() {
+    for (var format of oddslib.FORMATS) {
+      var value = 1.0;
+      switch (format) {
+      case "fractional":
+	value = "1/1"; break;
+
+      case "moneyline":
+	value = 100; break;
+
+      case "impliedProbability":
+	value = 0.5; break;
+      }
+
+      var constructor = "from" + format[0].toUpperCase() + format.substr(1);
+      var expected = oddslib[constructor](value).toDecimal();
+      oddslib.from(format, value).toDecimal().should.equal(expected);
+    }
+  });
+});
+
 describe('odds conversion', function() {
   it('supports decimal/EU odds', function() {
     oddslib.fromDecimal(1.5).toDecimal().should.equal(1.5);
