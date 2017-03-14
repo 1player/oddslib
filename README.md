@@ -36,8 +36,8 @@ Or using the generic constructor:
 
 ```js
 oddslib.from('decimal', 1.2);
-oddslib.from('moneyline, -500);
-oddslib.from('hongKong, .2);
+oddslib.from('moneyline', -500);
+oddslib.from('hongKong', .2);
 oddslib.from('impliedProbability', .5);
 oddslib.from('fractional', "5/2");
 oddslib.from('malay', 0.5);
