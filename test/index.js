@@ -34,13 +34,13 @@ describe('odds construction', function() {
     oddslib.fromImpliedProbability(0.5).toDecimal().should.equal(2.00);
   });
 
-  it('support Malay odds', function() {
+  it('supports Malay odds', function() {
     oddslib.fromMalay(0.2).should.be.an.instanceof(oddslib.Odds);
     oddslib.fromMalay(-0.4).toDecimal().should.equal(3.5);
     oddslib.fromMalay(0.75).toDecimal().should.equal(1.75);
   });
 
-  it('support Indonesian odds', function() {
+  it('supports Indonesian odds', function() {
     oddslib.fromIndonesian(-5.0).should.be.an.instanceof(oddslib.Odds);
     oddslib.fromIndonesian(-5.0).toDecimal().should.equal(1.2);
     oddslib.fromIndonesian(3.0).toDecimal().should.equal(4.0);
