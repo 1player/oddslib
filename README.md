@@ -59,5 +59,6 @@ odds.toIndonesian();         // == -5.0
 
 **Other features**
 
+- [ ] Throw error when invalid odds are passed
 - [ ] Formatting
 - [ ] Fractional lookup tables
