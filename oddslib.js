@@ -41,6 +41,21 @@ var Odds = (function() {
   };
 
   PublicOdds.fromFractional = function(n, d) {
+    if (typeof d === "undefined") {
+      // Try to split on the slash
+      var pieces = n.toString().split("/");
+
+      n = parseFloat(pieces[0]);
+
+      if (pieces.length === 2) {
+	d = parseFloat(pieces[1]);
+      } else if (pieces.length === 1) {
+	d = 1;
+      } else {
+	throw new Error('Invalid fraction');
+      }
+    }
+
     return new Odds(1 + (n / d));
   };
 

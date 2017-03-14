@@ -20,7 +20,9 @@ var odds = oddslib.fromHongKong(.20);
 var odds = oddslib.fromImpliedProbability(.5);
 
 // Create from UK/fractional odds
-var odds = oddslib.fromFractional(5, 2);
+var odds = oddslib.fromFractional(5, 2)
+         = oddslib.fromFractional("5/2")
+         = oddslib.fromFractional(2.5);
 
 // Create from Malay odds
 var odds = oddslib.fromMalay(0.5);

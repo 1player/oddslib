@@ -27,6 +27,10 @@ describe('odds construction', function() {
   it('supports UK/fractional odds', function() {
     oddslib.fromFractional(5, 2).should.be.an.instanceof(oddslib.Odds);
     oddslib.fromFractional(5, 2).toDecimal().should.equal(3.50);
+    oddslib.fromFractional("5/2").toDecimal().should.equal(3.50);
+    oddslib.fromFractional(2.5).toDecimal().should.equal(3.50);
+
+    expect(function() { oddslib.fromFractional("5/2/3"); }).to.throw(Error);
   });
 
   it('supports implied probability', function() {
