@@ -53,7 +53,7 @@ odds.toIndonesian();         // == -5.0
 - [x] UK/fractional odds
 - [x] Hong Kong odds
 - [x] Malay odds
-- [ ] Indonesian odds
+- [x] Indonesian odds
 - [x] Implied probability
 
 
