@@ -39,6 +39,12 @@ describe('odds construction', function() {
     oddslib.fromMalay(-0.4).toDecimal().should.equal(3.5);
     oddslib.fromMalay(0.75).toDecimal().should.equal(1.75);
   });
+
+  it('support Indonesian odds', function() {
+    oddslib.fromIndonesian(-5.0).should.be.an.instanceof(oddslib.Odds);
+    oddslib.fromIndonesian(-5.0).toDecimal().should.equal(1.2);
+    oddslib.fromIndonesian(3.0).toDecimal().should.equal(4.0);
+  });
 });
 
 describe('odds conversion', function() {
@@ -72,5 +78,11 @@ describe('odds conversion', function() {
     oddslib.fromDecimal(1.1).toMalay().should.equal(0.1);
     oddslib.fromDecimal(2.0).toMalay().should.equal(1.0);
     oddslib.fromMoneyline(400).toMalay().should.equal(-0.25);
+  });
+
+  it('supports Indonesian odds', function() {
+    oddslib.fromDecimal(1.1).toIndonesian().should.equal(-10.0);
+    oddslib.fromDecimal(2.0).toIndonesian().should.equal(1.0);
+    oddslib.fromMoneyline(400).toIndonesian().should.equal(4.00);
   });
 });

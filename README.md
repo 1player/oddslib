@@ -25,6 +25,9 @@ var odds = oddslib.fromFractional(5, 2);
 // Create from Malay odds
 var odds = oddslib.fromMalay(0.5);
 
+// Create from Indonesian odds
+var odds = oddslib.fromIndonesian(-5.0);
+
 ```
 
 Odds can then be converted using the to* instance methods:
@@ -38,6 +41,7 @@ odds.toHongKong();           // == 0.2
 odds.toImpliedProbability(); // == 0.83̅
 odds.toFractional();         // == "1/5"
 odds.toMalay();              // == 0.2
+odds.toIndonesian();         // == -5.0
 ```
 
 # Todo

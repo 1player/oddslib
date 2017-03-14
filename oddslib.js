@@ -51,6 +51,13 @@ var Odds = (function() {
     return new Odds(malay + 1);
   };
 
+  PublicOdds.fromIndonesian = function(indonesian) {
+    if (indonesian >= 1) {
+      return new Odds(indonesian + 1);
+    }
+    return new Odds( (-1 / indonesian) + 1 );
+  };
+
   return PublicOdds;
 }());
 
@@ -86,6 +93,13 @@ Odds.prototype.toMalay = function() {
   return fixFloatError(-1 / (this.decimalValue - 1));
 };
 
+Odds.prototype.toIndonesian = function() {
+  if (this.decimalValue < 2.0) {
+    return fixFloatError( -1 / (this.decimalValue - 1));
+  }
+  return fixFloatError(this.decimalValue - 1);
+};
+
 module.exports = {
   Odds: Odds,
 
@@ -95,4 +109,5 @@ module.exports = {
   fromImpliedProbability: Odds.fromImpliedProbability,
   fromFractional: Odds.fromFractional,
   fromMalay: Odds.fromMalay,
+  fromIndonesian: Odds.fromIndonesian,
 };
