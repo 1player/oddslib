@@ -44,6 +44,13 @@ var Odds = (function() {
     return new Odds(1 + (n / d));
   };
 
+  PublicOdds.fromMalay = function(malay) {
+    if (malay < 0) {
+      malay = -1 / malay;
+    }
+    return new Odds(malay + 1);
+  };
+
   return PublicOdds;
 }());
 
@@ -72,6 +79,13 @@ Odds.prototype.toFractional = function() {
   return n2f(fixFloatError(this.decimalValue - 1));
 };
 
+Odds.prototype.toMalay = function() {
+  if (this.decimalValue <= 2.0) {
+    return fixFloatError(this.decimalValue - 1);
+  }
+  return fixFloatError(-1 / (this.decimalValue - 1));
+};
+
 module.exports = {
   Odds: Odds,
 
@@ -80,4 +94,5 @@ module.exports = {
   fromHongKong: Odds.fromHongKong,
   fromImpliedProbability: Odds.fromImpliedProbability,
   fromFractional: Odds.fromFractional,
+  fromMalay: Odds.fromMalay,
 };

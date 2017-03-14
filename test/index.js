@@ -34,6 +34,11 @@ describe('odds construction', function() {
     oddslib.fromImpliedProbability(0.5).toDecimal().should.equal(2.00);
   });
 
+  it('support Malay odds', function() {
+    oddslib.fromMalay(0.2).should.be.an.instanceof(oddslib.Odds);
+    oddslib.fromMalay(-0.4).toDecimal().should.equal(3.5);
+    oddslib.fromMalay(0.75).toDecimal().should.equal(1.75);
+  });
 });
 
 describe('odds conversion', function() {
@@ -61,5 +66,11 @@ describe('odds conversion', function() {
     oddslib.fromDecimal(1.60).toImpliedProbability().should.equal(0.625);
     oddslib.fromDecimal(2.50).toImpliedProbability().should.equal(0.4);
     oddslib.fromDecimal(1).toImpliedProbability().should.equal(1);
+  });
+
+  it('supports Malay odds', function() {
+    oddslib.fromDecimal(1.1).toMalay().should.equal(0.1);
+    oddslib.fromDecimal(2.0).toMalay().should.equal(1.0);
+    oddslib.fromMoneyline(400).toMalay().should.equal(-0.25);
   });
 });
