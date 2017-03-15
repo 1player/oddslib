@@ -85,9 +85,9 @@ var Odds = (function() {
 
   // Generic constructor
   var constructorMap = {};
-  for (var format of FORMATS) {
+  FORMATS.forEach(function(format) {
     constructorMap[format] = "from" + format[0].toUpperCase() + format.substr(1);
-  }
+  });
 
   PublicOdds.from = function(format, value) {
     return PublicOdds[constructorMap[format]](value);
