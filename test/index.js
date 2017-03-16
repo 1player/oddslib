@@ -116,3 +116,31 @@ describe('odds conversion', function() {
     oddslib.fromMoneyline(400).toIndonesian().should.equal(4.00);
   });
 });
+
+describe('odds generic conversion', function() {
+  it('supports all formats', function() {
+    for (var format of oddslib.FORMATS) {
+      var value = 1.0;
+      switch (format) {
+      case "fractional":
+	value = "1/1"; break;
+
+      case "moneyline":
+	value = 100; break;
+
+      case "impliedProbability":
+	value = 0.5; break;
+      }
+
+      var odds = oddslib.fromDecimal(1.25);
+
+      var converter = "to" + format[0].toUpperCase() + format.substr(1);
+      var expected = odds[converter](value);
+      odds.to(format).should.equal(expected);
+    }
+  });
+
+  it('errors when an invalid format is passed', function() {
+    expect(function() { oddslib.to('whatever'); }).to.throw(Error);
+  });
+});

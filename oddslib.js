@@ -138,6 +138,19 @@ Odds.prototype.toIndonesian = function() {
   return fixFloatError(this.decimalValue - 1);
 };
 
+// Generic conversion
+var converterMap = {};
+FORMATS.forEach(function(format) {
+  converterMap[format] = "to" + format[0].toUpperCase() + format.substr(1);
+});
+
+Odds.prototype.to = function(format) {
+  if (typeof converterMap[format] === "undefined") {
+    throw new Error("Unknown format " + format + ".");
+  }
+  return this[converterMap[format]]();
+};
+
 module.exports = {
   Odds: Odds,
 
