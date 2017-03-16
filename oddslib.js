@@ -10,7 +10,7 @@ var FORMATS = {
   // European/Decimal format
   decimal: {
     from: function(decimal) {
-      return decimal;
+      return parseFloat(decimal);
     },
     to: function() {
       return this.decimalValue;
@@ -20,6 +20,8 @@ var FORMATS = {
   // American/Moneyline format
   moneyline: {
     from: function(moneyline) {
+      moneyline = parseFloat(moneyline);
+
       if (moneyline > 0) {
 	return (moneyline / 100.0) + 1;
       }
@@ -36,7 +38,7 @@ var FORMATS = {
   // Hong Kong format
   hongKong: {
     from: function(hongKong) {
-      return hongKong + 1.0;
+      return parseFloat(hongKong) + 1.0;
     },
     to: function() {
       return fixFloatError(this.decimalValue - 1);
@@ -46,7 +48,7 @@ var FORMATS = {
   // Implied probability
   impliedProbability: {
     from: function(ip) {
-      return 1.0 / ip;
+      return 1.0 / parseFloat(ip);
     },
     to: function() {
       return fixFloatError(1 / this.decimalValue);
@@ -81,6 +83,8 @@ var FORMATS = {
   // Malay format
   malay: {
     from: function(malay) {
+      malay = parseFloat(malay);
+
       if (malay < 0) {
 	malay = -1 / malay;
       }
@@ -97,6 +101,8 @@ var FORMATS = {
   // Indonesian format
   indonesian: {
     from: function(indonesian) {
+      indonesian = parseFloat(indonesian);
+
       if (indonesian >= 1) {
 	return indonesian + 1;
       }

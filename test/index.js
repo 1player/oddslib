@@ -11,17 +11,20 @@ describe('odds construction', function() {
   it('supports decimal/EU odds', function() {
     oddslib.from('decimal', 1.5).should.be.an.instanceof(oddslib.Odds);
     oddslib.from('decimal', 1.5).to('decimal').should.equal(1.5);
+    oddslib.from('decimal', '1.5').to('decimal').should.equal(1.5);
   });
 
   it('supports Moneyline odds', function() {
     oddslib.from('moneyline', -500).should.be.an.instanceof(oddslib.Odds);
     oddslib.from('moneyline', -500).to('decimal').should.equal(1.20);
+    oddslib.from('moneyline', '-500').to('decimal').should.equal(1.20);
     oddslib.from('moneyline', 500).to('decimal').should.equal(6.00);
   });
 
   it('supports Hong Kong odds', function() {
     oddslib.from('hongKong', 0.2).should.be.an.instanceof(oddslib.Odds);
     oddslib.from('hongKong', 0.2).to('decimal').should.equal(1.20);
+    oddslib.from('hongKong', '0.2').to('decimal').should.equal(1.20);
   });
 
   it('supports UK/fractional odds', function() {
@@ -36,11 +39,13 @@ describe('odds construction', function() {
   it('supports implied probability', function() {
     oddslib.from('impliedProbability', 0.5).should.be.an.instanceof(oddslib.Odds);
     oddslib.from('impliedProbability', 0.5).to('decimal').should.equal(2.00);
+    oddslib.from('impliedProbability', '0.5').to('decimal').should.equal(2.00);
   });
 
   it('supports Malay odds', function() {
     oddslib.from('malay', 0.2).should.be.an.instanceof(oddslib.Odds);
     oddslib.from('malay', -0.4).to('decimal').should.equal(3.5);
+    oddslib.from('malay', '-0.4').to('decimal').should.equal(3.5);
     oddslib.from('malay', 0.75).to('decimal').should.equal(1.75);
   });
 
@@ -48,6 +53,7 @@ describe('odds construction', function() {
     oddslib.from('indonesian', -5.0).should.be.an.instanceof(oddslib.Odds);
     oddslib.from('indonesian', -5.0).to('decimal').should.equal(1.2);
     oddslib.from('indonesian', 3.0).to('decimal').should.equal(4.0);
+    oddslib.from('indonesian', '3.0').to('decimal').should.equal(4.0);
   });
 });
 
