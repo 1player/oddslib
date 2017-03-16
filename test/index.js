@@ -9,138 +9,84 @@ describe('odds construction', function() {
   });
 
   it('supports decimal/EU odds', function() {
-    oddslib.fromDecimal(1.5).should.be.an.instanceof(oddslib.Odds);
-    oddslib.fromDecimal(1.5).toDecimal().should.equal(1.5);
+    oddslib.from('decimal', 1.5).should.be.an.instanceof(oddslib.Odds);
+    oddslib.from('decimal', 1.5).to('decimal').should.equal(1.5);
   });
 
   it('supports Moneyline odds', function() {
-    oddslib.fromMoneyline(-500).should.be.an.instanceof(oddslib.Odds);
-    oddslib.fromMoneyline(-500).toDecimal().should.equal(1.20);
-    oddslib.fromMoneyline(500).toDecimal().should.equal(6.00);
+    oddslib.from('moneyline', -500).should.be.an.instanceof(oddslib.Odds);
+    oddslib.from('moneyline', -500).to('decimal').should.equal(1.20);
+    oddslib.from('moneyline', 500).to('decimal').should.equal(6.00);
   });
 
   it('supports Hong Kong odds', function() {
-    oddslib.fromHongKong(0.2).should.be.an.instanceof(oddslib.Odds);
-    oddslib.fromHongKong(0.2).toDecimal().should.equal(1.20);
+    oddslib.from('hongKong', 0.2).should.be.an.instanceof(oddslib.Odds);
+    oddslib.from('hongKong', 0.2).to('decimal').should.equal(1.20);
   });
 
   it('supports UK/fractional odds', function() {
-    oddslib.fromFractional(5, 2).should.be.an.instanceof(oddslib.Odds);
-    oddslib.fromFractional(5, 2).toDecimal().should.equal(3.50);
-    oddslib.fromFractional("5/2").toDecimal().should.equal(3.50);
-    oddslib.fromFractional(2.5).toDecimal().should.equal(3.50);
+    oddslib.from('fractional', 5, 2).should.be.an.instanceof(oddslib.Odds);
+    oddslib.from('fractional', 5, 2).to('decimal').should.equal(3.50);
+    oddslib.from('fractional', "5/2").to('decimal').should.equal(3.50);
+    oddslib.from('fractional', 2.5).to('decimal').should.equal(3.50);
 
-    expect(function() { oddslib.fromFractional("5/2/3"); }).to.throw(Error);
+    expect(function() { oddslib.from('fractional', "5/2/3"); }).to.throw(Error);
   });
 
   it('supports implied probability', function() {
-    oddslib.fromImpliedProbability(0.5).should.be.an.instanceof(oddslib.Odds);
-    oddslib.fromImpliedProbability(0.5).toDecimal().should.equal(2.00);
+    oddslib.from('impliedProbability', 0.5).should.be.an.instanceof(oddslib.Odds);
+    oddslib.from('impliedProbability', 0.5).to('decimal').should.equal(2.00);
   });
 
   it('supports Malay odds', function() {
-    oddslib.fromMalay(0.2).should.be.an.instanceof(oddslib.Odds);
-    oddslib.fromMalay(-0.4).toDecimal().should.equal(3.5);
-    oddslib.fromMalay(0.75).toDecimal().should.equal(1.75);
+    oddslib.from('malay', 0.2).should.be.an.instanceof(oddslib.Odds);
+    oddslib.from('malay', -0.4).to('decimal').should.equal(3.5);
+    oddslib.from('malay', 0.75).to('decimal').should.equal(1.75);
   });
 
   it('supports Indonesian odds', function() {
-    oddslib.fromIndonesian(-5.0).should.be.an.instanceof(oddslib.Odds);
-    oddslib.fromIndonesian(-5.0).toDecimal().should.equal(1.2);
-    oddslib.fromIndonesian(3.0).toDecimal().should.equal(4.0);
-  });
-});
-
-describe('odds generic constructor', function() {
-  it('supports all formats', function() {
-    for (var format of oddslib.FORMATS) {
-      var value = 1.0;
-      switch (format) {
-      case "fractional":
-	value = "1/1"; break;
-
-      case "moneyline":
-	value = 100; break;
-
-      case "impliedProbability":
-	value = 0.5; break;
-      }
-
-      var constructor = "from" + format[0].toUpperCase() + format.substr(1);
-      var expected = oddslib[constructor](value).toDecimal();
-      oddslib.from(format, value).toDecimal().should.equal(expected);
-    }
-  });
-
-  it('errors when an invalid format is passed', function() {
-    expect(function() { oddslib.from('whatever', 1.0); }).to.throw(Error);
+    oddslib.from('indonesian', -5.0).should.be.an.instanceof(oddslib.Odds);
+    oddslib.from('indonesian', -5.0).to('decimal').should.equal(1.2);
+    oddslib.from('indonesian', 3.0).to('decimal').should.equal(4.0);
   });
 });
 
 describe('odds conversion', function() {
   it('supports decimal/EU odds', function() {
-    oddslib.fromDecimal(1.5).toDecimal().should.equal(1.5);
+    oddslib.from('decimal', 1.5).to('decimal').should.equal(1.5);
   });
 
   it('supports Moneyline odds', function() {
-    oddslib.fromDecimal(1.8).toMoneyline().should.equal(-125);
-    oddslib.fromDecimal(4.5).toMoneyline().should.equal(350);
+    oddslib.from('decimal', 1.8).to('moneyline').should.equal(-125);
+    oddslib.from('decimal', 4.5).to('moneyline').should.equal(350);
   });
 
   it('supports Hong Kong odds', function() {
-    oddslib.fromDecimal(1.2).toHongKong().should.equal(0.20);
-    oddslib.fromDecimal(11.76).toHongKong().should.equal(10.76);
+    oddslib.from('decimal', 1.2).to('hongKong').should.equal(0.20);
+    oddslib.from('decimal', 11.76).to('hongKong').should.equal(10.76);
   });
 
   it('supports UK/fractional odds', function() {
-    oddslib.fromDecimal(1.40).toFractional().should.equal("2/5");
-    oddslib.fromDecimal(3.50).toFractional().should.equal("5/2");
-    oddslib.fromDecimal(2).toFractional().should.equal("1/1");
+    oddslib.from('decimal', 1.40).to('fractional').should.equal("2/5");
+    oddslib.from('decimal', 3.50).to('fractional').should.equal("5/2");
+    oddslib.from('decimal', 2).to('fractional').should.equal("1/1");
   });
 
   it('supports implied probability', function() {
-    oddslib.fromDecimal(1.60).toImpliedProbability().should.equal(0.625);
-    oddslib.fromDecimal(2.50).toImpliedProbability().should.equal(0.4);
-    oddslib.fromDecimal(1).toImpliedProbability().should.equal(1);
+    oddslib.from('decimal', 1.60).to('impliedProbability').should.equal(0.625);
+    oddslib.from('decimal', 2.50).to('impliedProbability').should.equal(0.4);
+    oddslib.from('decimal', 1).to('impliedProbability').should.equal(1);
   });
 
   it('supports Malay odds', function() {
-    oddslib.fromDecimal(1.1).toMalay().should.equal(0.1);
-    oddslib.fromDecimal(2.0).toMalay().should.equal(1.0);
-    oddslib.fromMoneyline(400).toMalay().should.equal(-0.25);
+    oddslib.from('decimal', 1.1).to('malay').should.equal(0.1);
+    oddslib.from('decimal', 2.0).to('malay').should.equal(1.0);
+    oddslib.from('moneyline', 400).to('malay').should.equal(-0.25);
   });
 
   it('supports Indonesian odds', function() {
-    oddslib.fromDecimal(1.1).toIndonesian().should.equal(-10.0);
-    oddslib.fromDecimal(2.0).toIndonesian().should.equal(1.0);
-    oddslib.fromMoneyline(400).toIndonesian().should.equal(4.00);
-  });
-});
-
-describe('odds generic conversion', function() {
-  it('supports all formats', function() {
-    for (var format of oddslib.FORMATS) {
-      var value = 1.0;
-      switch (format) {
-      case "fractional":
-	value = "1/1"; break;
-
-      case "moneyline":
-	value = 100; break;
-
-      case "impliedProbability":
-	value = 0.5; break;
-      }
-
-      var odds = oddslib.fromDecimal(1.25);
-
-      var converter = "to" + format[0].toUpperCase() + format.substr(1);
-      var expected = odds[converter](value);
-      odds.to(format).should.equal(expected);
-    }
-  });
-
-  it('errors when an invalid format is passed', function() {
-    expect(function() { oddslib.to('whatever'); }).to.throw(Error);
+    oddslib.from('decimal', 1.1).to('indonesian').should.equal(-10.0);
+    oddslib.from('decimal', 2.0).to('indonesian').should.equal(1.0);
+    oddslib.from('moneyline', 400).to('indonesian').should.equal(4.00);
   });
 });

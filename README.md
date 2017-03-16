@@ -2,60 +2,48 @@ A JS library to convert and format odds.
 
 # Usage
 
-Odds are constructed by calling the public from* constructors:
+Odds are constructed by calling the public `from` constructor:
 
 ```js
 var oddslib = require('oddslib');
 
 // Create from decimal/European odds
-var odds = oddslib.fromDecimal(1.20);
+var odds = oddslib.from('decimal', 1.20);
 
 // Create from American/Moneyline odds
-var odds = oddslib.fromMoneyline(-500);
+var odds = oddslib.from('moneyline', -500);
 
 // Create from Hong Kong odds
-var odds = oddslib.fromHongKong(.20);
+var odds = oddslib.from('hongKong', .20);
 
 // Create from implied probability
-var odds = oddslib.fromImpliedProbability(.5);
+var odds = oddslib.from('impliedProbability', .5);
 
 // Create from UK/fractional odds
-var odds = oddslib.fromFractional(5, 2)
-         = oddslib.fromFractional("5/2")
-         = oddslib.fromFractional(2.5);
+var odds = oddslib.from('fractional', 5, 2)
+         = oddslib.from('fractional', "5/2")
+         = oddslib.from('fractional', 2.5);
 
 // Create from Malay odds
-var odds = oddslib.fromMalay(0.5);
+var odds = oddslib.from('malay', 0.5);
 
 // Create from Indonesian odds
-var odds = oddslib.fromIndonesian(-5.0);
+var odds = oddslib.from('indonesian', -5.0);
 
 ```
 
-Or using the generic constructor:
+Odds can then be converted using the `to` instance method:
 
 ```js
-oddslib.from('decimal', 1.2);
-oddslib.from('moneyline', -500);
-oddslib.from('hongKong', .2);
-oddslib.from('impliedProbability', .5);
-oddslib.from('fractional', "5/2");
-oddslib.from('malay', 0.5);
-oddslib.from('indonesian', -5.0);
-```
+var odds = oddslib.from('decimal', 1.20);
 
-Odds can then be converted using the to* instance methods:
-
-```js
-var odds = oddslib.fromDecimal(1.20);
-
-odds.toDecimal();            // == 1.2
-odds.toMoneyline();          // == -500
-odds.toHongKong();           // == 0.2
-odds.toImpliedProbability(); // == 0.83̅
-odds.toFractional();         // == "1/5"
-odds.toMalay();              // == 0.2
-odds.toIndonesian();         // == -5.0
+odds.to('decimal');            // == 1.2
+odds.to('moneyline');          // == -500
+odds.to('hongKong');           // == 0.2
+odds.to('impliedProbability'); // == 0.83̅
+odds.to('fractional');         // == "1/5"
+odds.to('malay');              // == 0.2
+odds.to('indonesian');         // == -5.0
 ```
 
 # Todo
