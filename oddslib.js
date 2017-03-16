@@ -90,6 +90,9 @@ var Odds = (function() {
   });
 
   PublicOdds.from = function(format, value) {
+    if (typeof constructorMap[format] === "undefined") {
+      throw new Error("Unknown format " + format + ".");
+    }
     return PublicOdds[constructorMap[format]](value);
   };
 

@@ -71,6 +71,10 @@ describe('odds generic constructor', function() {
       oddslib.from(format, value).toDecimal().should.equal(expected);
     }
   });
+
+  it('errors when an invalid format is passed', function() {
+    expect(function() { oddslib.from('whatever', 1.0); }).to.throw(Error);
+  });
 });
 
 describe('odds conversion', function() {
