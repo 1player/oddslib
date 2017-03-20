@@ -44,9 +44,8 @@ describe('Hong Kong odds', function() {
 
 describe('Fractional odds', function() {
   it('can be constructed', function() {
-    oddslib.from('fractional', 5, 2).should.be.an.instanceof(oddslib.Odds);
-    oddslib.from('fractional', 5, 2).to('decimal').should.equal(3.50);
     oddslib.from('fractional', "5/2").to('decimal').should.equal(3.50);
+    oddslib.from('fractional', 5/2).to('decimal').should.equal(3.50);
     oddslib.from('fractional', 2.5).to('decimal').should.equal(3.50);
 
     expect(function() { oddslib.from('fractional', "5/2/3"); }).to.throw(Error);

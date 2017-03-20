@@ -57,20 +57,18 @@ var FORMATS = {
 
   // UK/Fractional format
   fractional: {
-    from: function(n, d) {
-      if (typeof d === "undefined") {
-	// Try to split on the slash
-	var pieces = n.toString().split("/");
+    from: function(n) {
+      // Try to split on the slash
+      var pieces = n.toString().split("/");
 
-	n = parseFloat(pieces[0]);
+      n = parseFloat(pieces[0]);
 
-	if (pieces.length === 2) {
-	  d = parseFloat(pieces[1]);
-	} else if (pieces.length === 1) {
-	  d = 1;
-	} else {
-	  throw new Error('Invalid fraction');
-	}
+      if (pieces.length === 2) {
+	d = parseFloat(pieces[1]);
+      } else if (pieces.length === 1) {
+	d = 1;
+      } else {
+	throw new Error('Invalid fraction');
       }
 
       return 1 + (n / d);
@@ -129,11 +127,11 @@ var Odds = (function() {
   Odds.prototype = PublicOdds.prototype;
 
   // Generic constructor
-  PublicOdds.from = function(format /* ,...value */) {
+  PublicOdds.from = function(format, value) {
     if (!FORMATS.hasOwnProperty(format)) {
       throw new Error("Unknown format " + format + ".");
     }
-    var decimal = FORMATS[format].from.apply(undefined, Array.prototype.slice.call(arguments, 1));
+    var decimal = FORMATS[format].from(value);
     return new Odds(decimal);
   };
 

@@ -20,7 +20,7 @@ var odds = oddslib.from('hongKong', .20);
 var odds = oddslib.from('impliedProbability', .5);
 
 // Create from UK/fractional odds
-var odds = oddslib.from('fractional', 5, 2)
+var odds = oddslib.from('fractional', 5/2)
          = oddslib.from('fractional', "5/2")
          = oddslib.from('fractional', 2.5);
 
