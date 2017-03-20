@@ -10,7 +10,11 @@ var FORMATS = {
   // European/Decimal format
   decimal: {
     from: function(decimal) {
-      return parseFloat(decimal);
+      decimal = parseFloat(decimal);
+      if (decimal < 1.0) {
+	throw new Error("Outside valid range.");
+      }
+      return decimal;
     },
     to: function() {
       return this.decimalValue;
@@ -22,7 +26,7 @@ var FORMATS = {
     from: function(moneyline) {
       moneyline = parseFloat(moneyline);
 
-      if (moneyline > 0) {
+      if (moneyline >= 0) {
 	return (moneyline / 100.0) + 1;
       }
       return (100 / -moneyline) + 1;
@@ -38,7 +42,11 @@ var FORMATS = {
   // Hong Kong format
   hongKong: {
     from: function(hongKong) {
-      return parseFloat(hongKong) + 1.0;
+      hongKong = parseFloat(hongKong);
+      if (hongKong < 0.0) {
+	throw new Error("Outside valid range.");
+      }
+      return hongKong + 1.0;
     },
     to: function() {
       return fixFloatError(this.decimalValue - 1);
@@ -48,7 +56,12 @@ var FORMATS = {
   // Implied probability
   impliedProbability: {
     from: function(ip) {
-      return 1.0 / parseFloat(ip);
+      ip = parseFloat(ip);
+      if (ip <= 0.0 || ip >= 1.0) {
+	throw new Error("Outside valid range");
+      }
+
+      return 1.0 / ip;
     },
     to: function() {
       return fixFloatError(1 / this.decimalValue);
@@ -71,6 +84,10 @@ var FORMATS = {
 	throw new Error('Invalid fraction');
       }
 
+      if (n === 0 || d === 0 || (n/d) <= 0.0) {
+	throw new Error('Outside valid range');
+      }
+
       return 1 + (n / d);
     },
     to: function() {
@@ -82,6 +99,10 @@ var FORMATS = {
   malay: {
     from: function(malay) {
       malay = parseFloat(malay);
+
+      if (malay <= -1.0 || malay > 1.0) {
+	throw new Error("Outside valid range.");
+      }
 
       if (malay < 0) {
 	malay = -1 / malay;
@@ -100,6 +121,10 @@ var FORMATS = {
   indonesian: {
     from: function(indonesian) {
       indonesian = parseFloat(indonesian);
+
+      if (indonesian === 0) {
+	throw new Error("Outside valid range.");
+      }
 
       if (indonesian >= 1) {
 	return indonesian + 1;
@@ -122,6 +147,10 @@ var Odds = (function() {
     throw new Error('This constructor is private, please use the from* functions');
   };
   var Odds = function(decimalValue) {
+    if (typeof decimalValue !== "number" || isNaN(decimalValue)) {
+      throw new Error("Invalid odds");
+    }
+
     this.decimalValue = fixFloatError(decimalValue);
   };
   Odds.prototype = PublicOdds.prototype;

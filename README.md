@@ -61,6 +61,5 @@ odds.to('indonesian');         // == -5.0
 
 **Other features**
 
-- [ ] Throw error when invalid odds are passed
-- [ ] Formatting
-- [ ] Fractional lookup tables
+- [x] Throw error when invalid odds are passed
+- [x] Throw error when odds are outside valid range
