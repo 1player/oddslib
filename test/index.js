@@ -123,6 +123,10 @@ describe('Implied probability', function() {
     oddslib.from('impliedProbability', '0.5').to('decimal').should.equal(2.00);
   });
 
+  it('accepts percentage strings', function() {
+    oddslib.from('impliedProbability', '10%').to('impliedProbability').should.equal(0.1);
+  });
+
   it('can be converted to', function() {
     oddslib.from('decimal', 1.60).to('impliedProbability').should.equal(0.625);
     oddslib.from('decimal', 2.50).to('impliedProbability').should.equal(0.4);

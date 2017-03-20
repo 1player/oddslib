@@ -17,11 +17,12 @@ var odds = oddslib.from('moneyline', -500);
 var odds = oddslib.from('hongKong', .20);
 
 // Create from implied probability
-var odds = oddslib.from('impliedProbability', .5);
+var odds = oddslib.from('impliedProbability', .5)
+         = oddslib.from('impliedProbability', '50%');
 
 // Create from UK/fractional odds
 var odds = oddslib.from('fractional', 5/2)
-         = oddslib.from('fractional', "5/2")
+         = oddslib.from('fractional', '5/2')
          = oddslib.from('fractional', 2.5);
 
 // Create from Malay odds

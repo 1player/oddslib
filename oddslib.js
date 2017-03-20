@@ -56,7 +56,13 @@ var FORMATS = {
   // Implied probability
   impliedProbability: {
     from: function(ip) {
-      ip = parseFloat(ip);
+      // Handle percentage string
+      if (typeof ip === "string" && ip.slice(-1) == "%") {
+	ip = parseFloat(ip) / 100.0;
+      } else {
+	ip = parseFloat(ip);
+      }
+
       if (ip <= 0.0 || ip >= 1.0) {
 	throw new Error("Outside valid range");
       }
