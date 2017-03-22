@@ -29,6 +29,11 @@ describe('decimal odds', function() {
     expect(function() { oddslib.from('decimal', 'foo'); }).to.throw(Error);
     expect(function() { oddslib.from('decimal', '-'); }).to.throw(Error);
   });
+
+  it('support custom precision', function() {
+    oddslib.from('decimal', 1.005).to('decimal', {precision: 2}).should.equal(1.01);
+    oddslib.from('decimal', 1.005).to('decimal', {precision: 0}).should.equal(1);
+  });
 });
 
 describe('Moneyline odds', function() {
@@ -48,6 +53,10 @@ describe('Moneyline odds', function() {
   it('throws an error when invalid odds are passed', function() {
     expect(function() { oddslib.from('moneyline', 'foo'); }).to.throw(Error);
     expect(function() { oddslib.from('moneyline', '-'); }).to.throw(Error);
+  });
+
+  it('support custom precision', function() {
+    oddslib.from('moneyline', -499.999).to('moneyline', {precision: 2}).should.equal(-500);
   });
 });
 
@@ -76,6 +85,10 @@ describe('Hong Kong odds', function() {
   it('throws an error when invalid odds are passed', function() {
     expect(function() { oddslib.from('hongKong', 'foo'); }).to.throw(Error);
     expect(function() { oddslib.from('hongKong', '-'); }).to.throw(Error);
+  });
+
+  it('support custom precision', function() {
+    oddslib.from('hongKong', 1.023).to('hongKong', {precision: 2}).should.equal(1.02);
   });
 });
 
@@ -114,6 +127,10 @@ describe('Fractional odds', function() {
     expect(function() { oddslib.from('fractional', '5//2'); }).to.throw(Error);
     expect(function() { oddslib.from('fractional', '-'); }).to.throw(Error);
   });
+
+  it('support custom precision', function() {
+    oddslib.from('hongKong', 1.023).to('hongKong', {precision: 2}).should.equal(1.02);
+  });
 });
 
 describe('Implied probability', function() {
@@ -148,6 +165,10 @@ describe('Implied probability', function() {
     expect(function() { oddslib.from('impliedProbability', 'foo'); }).to.throw(Error);
     expect(function() { oddslib.from('impliedProbability', '-'); }).to.throw(Error);
   });
+
+  it('supports custom precision', function() {
+    oddslib.from('impliedProbability', 0.666).to('impliedProbability', {precision: 2}).should.equal(0.67);
+  });
 });
 
 describe('Malay odds', function() {
@@ -179,6 +200,10 @@ describe('Malay odds', function() {
     expect(function() { oddslib.from('malay', 'foo'); }).to.throw(Error);
     expect(function() { oddslib.from('malay', '-'); }).to.throw(Error);
   });
+
+  it('supports custom precision', function() {
+    oddslib.from('malay', -0.8999).to('malay', {precision: 1}).should.equal(-0.9);
+  });
 });
 
 describe('Indonesian odds', function() {
@@ -209,6 +234,10 @@ describe('Indonesian odds', function() {
   it('throws an error when invalid odds are passed', function() {
     expect(function() { oddslib.from('indonesian', 'foo'); }).to.throw(Error);
     expect(function() { oddslib.from('indonesian', '-'); }).to.throw(Error);
+  });
+
+  it('support custom precision', function() {
+    oddslib.from('indonesian', -50.678).to('indonesian', {precision: 1}).should.equal(-50.7);
   });
 });
 
