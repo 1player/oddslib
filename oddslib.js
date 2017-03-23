@@ -36,7 +36,7 @@ var FORMATS = {
   decimal: {
     from: function(decimal) {
       decimal = parseFloat(decimal);
-      if (decimal < 1.0) {
+      if (decimal <= 1.0) {
 	throw new Error("Outside valid range.");
       }
       return decimal;

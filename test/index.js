@@ -15,11 +15,12 @@ describe('decimal odds', function() {
   });
 
   it('throws an error when outside range', function() {
-    // valid range: x >= 1.0
-    oddslib.from('decimal', 1.0).should.be.an.instanceof(oddslib.Odds);
+    // valid range: x > 1.0
+    oddslib.from('decimal', 1.01).should.be.an.instanceof(oddslib.Odds);
     oddslib.from('decimal', 10.0).should.be.an.instanceof(oddslib.Odds);
     oddslib.from('decimal', 100000.0).should.be.an.instanceof(oddslib.Odds);
 
+    expect(function() { oddslib.from('decimal', 1.0); }).to.throw(Error);
     expect(function() { oddslib.from('decimal', 0.98); }).to.throw(Error);
     expect(function() { oddslib.from('decimal', 0); }).to.throw(Error);
     expect(function() { oddslib.from('decimal', -0.5); }).to.throw(Error);
@@ -148,7 +149,6 @@ describe('Implied probability', function() {
   it('can be converted to', function() {
     oddslib.from('decimal', 1.60).to('impliedProbability').should.equal(0.625);
     oddslib.from('decimal', 2.50).to('impliedProbability').should.equal(0.4);
-    oddslib.from('decimal', 1).to('impliedProbability').should.equal(1);
   });
 
   it('throws an error when outside range', function() {
