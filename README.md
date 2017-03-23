@@ -2,7 +2,7 @@ A JS library to convert and format odds.
 
 # Usage
 
-Odds are constructed by calling the public `from` constructor:
+Odds are constructed by calling the public `from(format, odds)` constructor:
 
 ```js
 var oddslib = require('oddslib');
@@ -33,7 +33,7 @@ var odds = oddslib.from('indonesian', -5.0);
 
 ```
 
-Odds can then be converted using the `to` instance method:
+Odds can then be converted using the `to(format, options?)` instance method:
 
 ```js
 var odds = oddslib.from('decimal', 1.20);
@@ -47,20 +47,20 @@ odds.to('malay');              // == 0.2
 odds.to('indonesian');         // == -5.0
 ```
 
-# Todo
+The default options are:
+```js
+{
+   precision: null,   // Return a rounded value correct to the nth digit. Do not round if null.
+   percentage: false, // Return IP odds as a percentage string. No effect on other formats.
+}
+```
 
-**Load from, convert to**
+Fractions are also approximated if the `precision` option is specified, by using the algorithm at [http://www.mindspring.com/~alanh/fracs.html](http://www.mindspring.com/~alanh/fracs.html).
 
-- [x] EU/decimal odds
-- [x] American odds
-- [x] UK/fractional odds
-- [x] Hong Kong odds
-- [x] Malay odds
-- [x] Indonesian odds
-- [x] Implied probability
+```js
+// No approximation
+oddslib.from('decimal', 2.33).to('fractional');                  // === "133/100"
 
-
-**Other features**
-
-- [x] Throw error when invalid odds are passed
-- [x] Throw error when odds are outside valid range
+// Approximate up to 2nd decimal digit
+oddslib.from('decimal', 2.33).to('fractional', {precision: 2});  // === "4/3"
+```
