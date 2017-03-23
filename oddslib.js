@@ -94,7 +94,20 @@ var FORMATS = {
 
       return 1.0 / ip;
     },
-    to: function() {
+    to: function(options) {
+      if (options.percentage) {
+	var value = fixFloatError(100.0 / this.decimalValue);
+
+	// HACK: Oddslib.prototype.to calls decimalAdjust if we return a number.
+	// But we need to round before adding the % symbol.
+	// So we do it here and return the string
+	if (options.precision !== null) {
+	  value = decimalAdjust('round', value, -options.precision);
+	}
+
+	return value.toString() + "%";
+      }
+
       return fixFloatError(1 / this.decimalValue);
     },
   },
@@ -205,11 +218,12 @@ Odds.prototype.to = function(format, options) {
     throw new Error("Unknown format " + format + ".");
   }
 
-  options = options || {
+  options = Object.assign({
     precision: null,
-  };
+    percentage: false,
+  }, options);
 
-  var ret = FORMATS[format].to.call(this);
+  var ret = FORMATS[format].to.call(this, options);
   if (typeof ret === "number" && options.precision !== null) {
     ret = decimalAdjust('round', ret, -options.precision);
   }

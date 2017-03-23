@@ -169,6 +169,16 @@ describe('Implied probability', function() {
   it('supports custom precision', function() {
     oddslib.from('impliedProbability', 0.666).to('impliedProbability', {precision: 2}).should.equal(0.67);
   });
+
+  it('can be formatted as a percentage', function() {
+    oddslib.from('impliedProbability', 0.5).to('impliedProbability', {percentage: true}).should.equal("50%");
+
+    // custom precision percentage
+    oddslib.from('impliedProbability', 0.6666).to('impliedProbability', {
+      precision: 1,
+      percentage: true,
+    }).should.equal("66.7%");
+  });
 });
 
 describe('Malay odds', function() {
