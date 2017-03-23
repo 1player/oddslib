@@ -1,4 +1,4 @@
-var n2f = require('num2fraction');
+var approximateFraction = require('./approx_fraction.js');
 
 // 1.2 - 1.0 === 0.19999999999999996
 // fixFloatError(1.2 - 1.0) === 0.2
@@ -134,8 +134,8 @@ var FORMATS = {
 
       return 1 + (n / d);
     },
-    to: function() {
-      return n2f(fixFloatError(this.decimalValue - 1));
+    to: function(options) {
+      return approximateFraction(this.decimalValue - 1, options.precision || 12);
     },
   },
 

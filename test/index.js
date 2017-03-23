@@ -129,7 +129,8 @@ describe('Fractional odds', function() {
   });
 
   it('support custom precision', function() {
-    oddslib.from('hongKong', 1.023).to('hongKong', {precision: 2}).should.equal(1.02);
+    oddslib.from('decimal', 2.023).to('fractional').should.equal("1023/1000");
+    oddslib.from('decimal', 2.023).to('fractional', {precision: 2}).should.equal("44/43");
   });
 });
 
