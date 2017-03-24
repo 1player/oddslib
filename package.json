@@ -8,6 +8,26 @@
   },
   "author": "Stéphane Travostino <steph@combo.cc>",
   "license": "MIT",
+  "keywords": [
+      "odds",
+      "conversion",
+      "formatting",
+      "european",
+      "fractional",
+      "uk",
+      "indonesian",
+      "american",
+      "malay",
+      "indonesian",
+      "malaysia",
+      "probability",
+      "implied probability",
+      "decimal"
+  ],
+  "repository": {
+      "type": "git",
+      "url": "https://github.com/1player/oddslib"
+  },
   "devDependencies": {
     "chai": "^3.5.0",
     "mocha": "^3.2.0"
