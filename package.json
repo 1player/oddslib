@@ -1,6 +1,6 @@
 {
   "name": "oddslib",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Odds conversion and formatting library",
   "main": "oddslib.js",
   "scripts": {
