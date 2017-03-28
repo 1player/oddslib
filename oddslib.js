@@ -146,6 +146,7 @@ var FORMATS = {
 
       n = parseFloat(pieces[0]);
 
+      var d;
       if (pieces.length === 2) {
 	d = parseFloat(pieces[1]);
       } else if (pieces.length === 1) {
