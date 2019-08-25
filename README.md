@@ -1,4 +1,4 @@
-** This library is stable and being used in production (as of Aug 2019). **
+**This library is stable and being used in production (as of Aug 2019).**
 
 A JS library to convert and format odds.
 
