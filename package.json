@@ -2,9 +2,12 @@
   "name": "oddslib",
   "version": "1.0.3",
   "description": "Odds conversion and formatting library",
-  "main": "oddslib.js",
+  "main": "dist/oddslib.cjs.js",
+  "module": "dist/oddslib.esm.js",
   "scripts": {
-    "test": "node_modules/.bin/mocha --reporter spec"
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
+    "test": "mocha --reporter spec"
   },
   "author": "Stéphane Travostino <steph@combo.cc>",
   "license": "MIT",
@@ -29,7 +32,8 @@
     "url": "https://github.com/1player/oddslib"
   },
   "devDependencies": {
-    "chai": "^3.5.0",
-    "mocha": "^3.2.0"
+    "chai": "^4.3.4",
+    "mocha": "^8.3.2",
+    "rollup": "^2.46.0"
   }
 }
