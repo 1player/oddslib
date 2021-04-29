@@ -1,4 +1,4 @@
-**This library is stable and being used in production (as of Aug 2019).**
+**This library is stable and being used in production (as of Apr 2021).**
 
 A JS library to convert and format odds.
 
@@ -7,38 +7,38 @@ A JS library to convert and format odds.
 Odds are constructed by calling the public `from(format, odds)` constructor:
 
 ```js
-var oddslib = require('oddslib');
+import * as oddslib from 'oddslib';
 
 // Create from decimal/European odds
-var odds = oddslib.from('decimal', 1.20);
+let odds = oddslib.from('decimal', 1.20);
 
 // Create from American/Moneyline odds
-var odds = oddslib.from('moneyline', -500);
+let odds = oddslib.from('moneyline', -500);
 
 // Create from Hong Kong odds
-var odds = oddslib.from('hongKong', .20);
+let odds = oddslib.from('hongKong', .20);
 
 // Create from implied probability
-var odds = oddslib.from('impliedProbability', .5)
+let odds = oddslib.from('impliedProbability', .5)
          = oddslib.from('impliedProbability', '50%');
 
 // Create from UK/fractional odds
-var odds = oddslib.from('fractional', 5/2)
+let odds = oddslib.from('fractional', 5/2)
          = oddslib.from('fractional', '5/2')
          = oddslib.from('fractional', 2.5);
 
 // Create from Malay odds
-var odds = oddslib.from('malay', 0.5);
+let odds = oddslib.from('malay', 0.5);
 
 // Create from Indonesian odds
-var odds = oddslib.from('indonesian', -5.0);
+let odds = oddslib.from('indonesian', -5.0);
 
 ```
 
 Odds can then be converted using the `to(format, options?)` instance method:
 
 ```js
-var odds = oddslib.from('decimal', 1.20);
+let odds = oddslib.from('decimal', 1.20);
 
 odds.to('decimal');            // == 1.2
 odds.to('moneyline');          // == -500
