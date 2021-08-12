@@ -1,12 +1,11 @@
 {
   "name": "oddslib",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "description": "Odds conversion and formatting library",
   "main": "dist/oddslib.cjs.js",
   "module": "dist/oddslib.esm.js",
   "scripts": {
-    "build": "rollup -c",
-    "dev": "rollup -c -w",
+    "build": "node ./esbuild.js",
     "test": "mocha --reporter spec"
   },
   "author": "Stéphane Travostino <steph@combo.cc>",
@@ -33,7 +32,7 @@
   },
   "devDependencies": {
     "chai": "^4.3.4",
-    "mocha": "^8.3.2",
-    "rollup": "^2.46.0"
+    "esbuild": "^0.12.19",
+    "mocha": "^8.3.2"
   }
 }
