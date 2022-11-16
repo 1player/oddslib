@@ -1,6 +1,6 @@
 {
   "name": "oddslib",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Odds conversion and formatting library",
   "main": "dist/oddslib.cjs.js",
   "module": "dist/oddslib.esm.js",
